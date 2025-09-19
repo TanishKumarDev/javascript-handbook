@@ -695,14 +695,3 @@ console.log(getSubstring(123, 0, 2)); // Not a string, ""
     - **Answer**: Counts code units for emojis.
     - **Trick**: Use `[...str]` for characters.
 
----
-
-## Practice Tips
-
-1. **Predict Outputs**: Test `slice`, `replace`, template literals.
-2. **DevTools**: Experiment with string methods and regex.
-3. **Mini-Project**: Build a string formatter (e.g., capitalize, reverse).
-4. **Explain Aloud**: Describe immutability or regex use.
-5. **Edge Cases**: Test emojis, invalid indices, regex errors.
-
----

@@ -673,11 +673,3 @@ console.log(getElement([1, 2], 5)); // Index out of bounds, null
    - **Answer**: Throws error without initial value.
    - **Trick**: Always provide initial value.
 
----
-
-## Practice Tips
-1. **Predict Outputs**: Test `map`, `filter`, `reduce` chains.
-2. **DevTools**: Use `console.table` for multidimensional arrays.
-3. **Mini-Project**: Build a data processor (e.g., filter and map user data).
-4. **Explain Aloud**: Describe `reduce` or duplicate removal.
-5. **Edge Cases**: Test sparse arrays, empty arrays, object references.
