@@ -213,5 +213,3 @@ function getTotalItems() {
 | **Interview Prep**     | Copy methods, `push` vs `unshift`, sparse arrays |
 
 ---
-
-**Next Topic?** Just say **"Array Methods (map, filter, reduce, etc.)"** or paste content — I'll deliver **perfect notes** just like this! 🚀
