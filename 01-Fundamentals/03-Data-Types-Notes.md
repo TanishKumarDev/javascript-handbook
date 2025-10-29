@@ -1,234 +1,238 @@
-### JavaScript Data Types
+# JavaScript Data Types
 
 #### 1. Definition
-Data types in JavaScript define the kind of data a variable can hold, such as numbers, text, or objects. JavaScript is dynamically typed, meaning variables can hold different types and change types during runtime without explicit declaration.
+**Data types** define the **kind of value** a variable can hold. JavaScript is **dynamically typed** — a variable can change type at runtime.
+
+---
 
 #### 2. Theory / Concept
-JavaScript categorizes data into **primitive** and **non-primitive (reference)** types. Primitive types are immutable and stored by value, while reference types are mutable and stored by reference. The type system affects how data is manipulated, compared, and converted.  
-- **Dynamic Typing**: Variables can switch types (e.g., from number to string) without explicit type definitions.  
-- **Type Coercion**: JavaScript automatically converts types in operations (e.g., `"5" + 3` becomes `"53"`).  
-- **Type Checking**: The `typeof` operator and other methods (e.g., `Array.isArray()`) identify types.  
-- **Memory**: Primitives are stored directly in memory, while reference types point to memory locations, impacting how changes propagate.  
 
-**Step-by-Step Process**:  
-1. Assign a value to a variable, implicitly setting its type.  
-2. Use the value in operations, where JavaScript may coerce types.  
-3. Check or convert types explicitly to avoid unexpected behavior.  
-4. Understand how scope and mutability affect data manipulation.
+| Category | Types |
+|--------|-------|
+| **Primitive (7)** | `number`, `string`, `boolean`, `undefined`, `null`, `symbol`, `bigint` |
+| **Non-Primitive (1)** | `object` (includes arrays, functions, objects) |
 
-#### 3. Syntax
-```javascript
-// Primitive types
-let num = 42;              // Number
-let str = "Hello";         // String
-let bool = true;           // Boolean
-let undef;                 // Undefined
-let nul = null;            // Null
-let sym = Symbol("id");    // Symbol
-let bigInt = 123n;         // BigInt
+> **Primitive** = **immutable**, passed by **value**  
+> **Object** = **mutable**, passed by **reference**
 
-// Non-primitive (reference) types
-let obj = { key: "value" }; // Object
-let arr = [1, 2, 3];       // Array
-let func = function() {};   // Function
+---
 
-// Type checking
-console.log(typeof num);    // "number"
-console.log(Array.isArray(arr)); // true
+#### 3. Primitive Types
+
+| Type | Example | `typeof` | Notes |
+|------|--------|--------|-------|
+| **`number`** | `42`, `3.14`, `NaN`, `Infinity` | `"number"` | One type for all numbers |
+| **`string`** | `"hello"`, `'hi'`, `` `world` `` | `"string"` | Immutable |
+| **`boolean`** | `true`, `false` | `"boolean"` | Logical values |
+| **`undefined`** | `let x;` | `"undefined"` | Not assigned |
+| **`null`** | `let x = null;` | `"object"` (quirk!) | Intentional absence |
+| **`symbol`** | `Symbol('id')` | `"symbol"` | Unique identifier |
+| **`bigint`** | `123n` | `"bigint"` | For large integers |
+
+---
+
+#### 4. Non-Primitive: `object`
+
+| Type | Example | `typeof` | Check |
+|------|--------|--------|-------|
+| **Object** | `{ name: "John" }` | `"object"` | — |
+| **Array** | `[1, 2, 3]` | `"object"` | `Array.isArray()` |
+| **Function** | `function() {}` | `"function"` | — |
+
+> All non-primitives are **objects** under the hood.
+
+---
+
+#### 5. Key Examples
+
+```js
+// Number
+let age = 25;
+let price = 99.99;
+let notANumber = NaN;
+let infinity = Infinity;
+
+// String
+let name = "Alice";
+let greeting = `Hello, ${name}!`;  // Template literal
+
+// Boolean
+let isActive = true;
+let hasPermission = age >= 18;
+
+// Undefined & Null
+let user;           // undefined
+let currentUser = null;  // intentional empty
+
+// Symbol
+let id = Symbol("userId");
+let obj = { [id]: 123 };
+
+// BigInt
+let big = 1234567890123456789012345n;
 ```
 
-#### 4. Types / Variants
-JavaScript has **7 primitive types** and **1 non-primitive type (object)** with variants:  
-1. **Number**: Integers, floating-point numbers, and special values (`Infinity`, `-Infinity`, `NaN`).  
-   ```javascript
-   let int = 42;
-   let float = 3.14;
-   let nan = NaN;
-   console.log(typeof nan); // "number"
-   ```
-2. **String**: Text enclosed in single (`'`), double (`"`), or backticks (`` ` ``) for template literals.  
-   ```javascript
-   let str1 = 'Single';
-   let str2 = `Template with ${int}`; // Template literal
-   console.log(str2); // "Template with 42"
-   ```
-3. **Boolean**: `true` or `false`.  
-   ```javascript
-   let isActive = true;
-   console.log(typeof isActive); // "boolean"
-   ```
-4. **Undefined**: Declared but unassigned variables.  
-   ```javascript
-   let x;
-   console.log(x); // undefined
-   ```
-5. **Null**: Intentional absence of value.  
-   ```javascript
-   let y = null;
-   console.log(typeof y); // "object" (JavaScript quirk)
-   ```
-6. **Symbol**: Unique identifiers (ES6+), often for object keys.  
-   ```javascript
-   let sym1 = Symbol("key");
-   let sym2 = Symbol("key");
-   console.log(sym1 === sym2); // false
-   ```
-7. **BigInt**: Large integers beyond `Number.MAX_SAFE_INTEGER` (ES2020+).  
-   ```javascript
-   let big = 12345678901234567890n;
-   console.log(typeof big); // "bigint"
-   ```
-8. **Object**: Key-value collections, including:  
-   - **Plain Objects**: `{ key: value }`.  
-   - **Arrays**: Ordered lists, e.g., `[1, 2, 3]`.  
-   - **Functions**: Reusable code blocks.  
-   ```javascript
-   let obj = { name: "John" };
-   let arr = [1, 2, 3];
-   let func = () => {};
-   console.log(typeof obj, typeof arr, typeof func); // "object" "object" "function"
-   ```
+---
 
-#### 5. Examples
-**Example 1: Working with Primitive Types**  
-```javascript
-// Declaring different primitive types
-let age = 30;                     // Number
-let name = "Alice";               // String
-let isStudent = false;            // Boolean
-let profile;                      // Undefined
-let settings = null;              // Null
-let id = Symbol("userId");        // Symbol
-let largeNum = 123456789n;        // BigInt
+#### 6. Truthy & Falsy Values
 
-// Logging types and values
-console.log("Age:", typeof age, age);           // number 30
-console.log("Name:", typeof name, name);        // string Alice
-console.log("Symbol:", typeof id, id.toString()); // symbol Symbol(userId)
+| Falsy (→ `false`) | Truthy (→ `true`) |
+|-------------------|-------------------|
+| `false` | `true` |
+| `0`, `-0`, `0n` | Any non-zero number |
+| `""` (empty string) | Any non-empty string |
+| `null` | `"0"`, `"false"` |
+| `undefined` | `[]`, `{}` |
+| `NaN` | Any object/function |
+
+```js
+if ("") console.log("truthy"); // Doesn't run
+if ([]) console.log("truthy"); // Runs!
 ```
 
-**Example 2: Objects and Arrays**  
-```javascript
-// Creating an object and array
-let user = {
-    name: "Bob",                  // String property
-    age: 25,                      // Number property
-    hobbies: ["reading", "gaming"] // Array property
-};
-let scores = [90, 85, 88];        // Array
+---
 
-// Modifying and accessing
-user.email = "bob@example.com";   // Add property
-scores.push(95);                  // Add element
-console.log("User:", user);       // {name: "Bob", age: 25, hobbies: Array(2), email: "bob@example.com"}
-console.log("Scores:", scores);    // [90, 85, 88, 95]
+#### 7. Type Checking
+
+```js
+typeof 42;           // "number"
+typeof "hi";         // "string"
+typeof true;         // "boolean"
+typeof undefined;    // "undefined"
+typeof null;         // "object" (bug!)
+
+typeof [];           // "object"
+typeof {};           // "object"
+typeof function(){}; // "function"
+
+Array.isArray([]);   // true
+Array.isArray({});   // false
 ```
 
-**Example 3: Type Checking and Coercion**  
-```javascript
-// Checking types
-let value = "123";
-console.log(typeof value);        // string
-console.log(typeof Number(value)); // number
-console.log(typeof Boolean(""));   // boolean
+---
 
-// Type coercion
-let result = "5" + 2;             // String concatenation
-console.log(result, typeof result); // "52" string
-console.log(Number("5") + 2);      // 7 number
+#### 8. Common Bugs / Mistakes
+
+| Bug | Cause | Fix |
+|-----|-------|-----|
+| `typeof null === "object"` | Historical bug | Use `=== null` |
+| `"5" + 3 → "53"` | `+` does concatenation | Use `Number("5") + 3` |
+| `[] == true` → `false` | Coercion rules | Use `===` |
+| `parseInt("123abc")` → `123` | Stops at first non-digit | Validate input |
+
+```js
+// Bad
+if (userInput == null) { ... }  // catches null AND undefined
+
+// Better
+if (userInput === null) { ... }
+if (userInput === undefined) { ... }
 ```
 
-#### 6. Use Cases
-- **Numbers**: Calculations (e.g., e-commerce cart totals, game scores).  
-- **Strings**: User input handling, text manipulation (e.g., form validation, UI text).  
-- **Booleans**: Conditional logic (e.g., toggling UI states, permission checks).  
-- **Undefined/Null**: Representing missing or absent data (e.g., uninitialized form fields, API null responses).  
-- **Symbols**: Unique object keys to avoid property collisions (e.g., in libraries).  
-- **BigInt**: Handling large numbers in financial or cryptographic apps.  
-- **Objects/Arrays**: Storing structured data (e.g., user profiles, product lists in web apps).  
-- **Functions**: Reusable logic (e.g., event handlers, data processing).
+---
 
-#### 7. Common Bugs / Mistakes
-- **Type Coercion Errors**: Using `==` instead of `===` leads to unexpected conversions. **Fix**: Always use strict equality (`===`).  
-  ```javascript
-  // Bad
-  console.log(0 == "0");  // true (coercion)
-  // Good
-  console.log(0 === "0"); // false
-  ```
-- **Misusing `typeof` for Arrays/Null**: `typeof` returns `"object"` for both. **Fix**: Use `Array.isArray()` or `value === null`.  
-  ```javascript
-  // Bad
-  console.log(typeof []); // "object"
-  // Good
-  console.log(Array.isArray([])); // true
-  ```
-- **Mixing BigInt and Number**: Operations between them cause errors. **Fix**: Convert to same type first.  
-  ```javascript
-  // Bad
-  console.log(123n + 456); // TypeError
-  // Good
-  console.log(123n + BigInt(456)); // 579n
-  ```
-- **Assuming Empty String is Falsy**: Forgetting truthy/falsy rules in conditions. **Fix**: Explicitly check values.  
-  ```javascript
-  // Bad
-  let input = "0";
-  if (input) { /* Runs because "0" is truthy */ }
-  // Good
-  if (input !== "") { /* Explicit check */ }
-  ```
-- **Undefined Property Access**: Accessing non-existent object properties. **Fix**: Check with `in` or optional chaining (`?.`).  
-  ```javascript
-  let obj = {};
-  // Bad
-  console.log(obj.name.length); // TypeError
-  // Good
-  console.log(obj.name?.length || 0); // 0
-  ```
+#### 9. Best Practices
 
-#### 8. Problem Solving / Practice Questions
-1. **Exercise 1**: Write a function that takes a value and returns its type using `typeof`. Handle arrays and null specially.  
-2. **Exercise 2**: Create an object representing a product (name: string, price: number, inStock: boolean). Write a function to validate its types and return errors if any.  
-3. **Exercise 3**: Convert a string input (e.g., "123.45") to a number and perform a calculation (e.g., multiply by 2). Handle invalid inputs gracefully.
+| Rule | Example |
+|------|--------|
+| Use `===` / `!==` | Avoid `==` coercion |
+| Use `??` for null/undefined | `let name = input ?? "Guest";` |
+| Validate types in functions | `if (typeof age !== "number")` |
+| Use `Array.isArray()` | Not `typeof` |
+| Prefer `const` for objects | Even if mutable |
 
-**Sample Solution for Exercise 1**:  
-```javascript
-function getType(value) {
-    if (value === null) return "null";
-    if (Array.isArray(value)) return "array";
-    return typeof value;
+```js
+// Good
+const user = { name: "Alice" };
+user.age = 25; // OK
+// user = {} // TypeError
+```
+
+---
+
+#### 10. Practical Examples
+
+```js
+// User Validation
+function validateUser(user) {
+  if (typeof user.name !== "string" || user.name === "") return false;
+  if (typeof user.age !== "number" || user.age < 0) return false;
+  return true;
 }
-console.log(getType(42));      // "number"
-console.log(getType([]));      // "array"
-console.log(getType(null));    // "null"
+
+// Shopping Cart Total
+function getTotal(items) {
+  return items
+    .filter(item => item.inStock)
+    .reduce((sum, item) => sum + item.price * item.quantity, 0);
+}
 ```
 
-#### 9. Interview Tips & Questions
-**Tips**:  
-- Explain the difference between primitive and reference types, focusing on mutability and memory.  
-- Demonstrate understanding of truthy/falsy values and type coercion pitfalls.  
-- Be ready to write type-checking or validation functions on the spot.  
+---
 
-**Questions**:  
-- **Q**: What are JavaScript’s primitive types, and how do they differ from objects?  
-  **A**: Primitives (Number, String, Boolean, Undefined, Null, Symbol, BigInt) are immutable and stored by value. Objects (including arrays, functions) are mutable, stored by reference, and can contain multiple properties.  
-- **Q**: Why does `typeof null` return `"object"`?  
-  **A**: It’s a historical quirk in JavaScript’s implementation. Use `value === null` for accurate null checks.  
-- **Q**: Explain truthy and falsy values with examples.  
-  **A**: Falsy values (`false`, `0`, `""`, `null`, `undefined`, `NaN`) evaluate to `false` in conditions. Truthy values (e.g., `"0"`, `[]`, `{}`) evaluate to `true`. Example: `if ("0") { /* runs */ }`.
+#### 11. Practice Exercises
 
-#### 10. Summary Table
-| Key Point            | Description |
-|----------------------|-------------|
-| Definition           | Types define data a variable can hold. |
-| Core Concept         | 7 primitives (immutable), 1 reference type (objects, mutable). |
-| Syntax               | Declare with `let`, `const`, `var`; check with `typeof`. |
-| Variants             | Number, String, Boolean, Undefined, Null, Symbol, BigInt, Object (Array, Function). |
-| Common Use           | Calculations, text manipulation, state management, structured data. |
-| Typical Errors       | Type coercion, incorrect `typeof` usage, mixing BigInt/Number. |
-| Practice Focus       | Type checking, validation, coercion handling. |
-| Interview Prep       | Explain primitives vs. objects, truthy/falsy, `typeof` quirks. |
+```js
+// Exercise 1: Type Checker
+function getType(val) {
+  if (Array.isArray(val)) return "array";
+  if (val === null) return "null";
+  return typeof val;
+}
+
+// Exercise 2: Safe Converter
+function toNumber(str) {
+  const num = Number(str);
+  return isNaN(num) ? 0 : num;
+}
+
+// Exercise 3: Falsy Checker
+function isFalsy(val) {
+  return !val;
+}
+```
+
+---
+
+#### 12. Interview Tips & Questions
+
+**Tips**:
+- Say: **“JavaScript has 7 primitive types and everything else is an object.”**
+- Know **`typeof null` is `"object"`** — it’s a bug.
+- Explain **truthy/falsy** with examples.
+- Use **`===`** in answers.
+
+**Common Questions**:
+
+- **Q**: How many primitive types?  
+  **A**: 7: `number`, `string`, `boolean`, `undefined`, `null`, `symbol`, `bigint`
+
+- **Q**: `typeof []`?  
+  **A**: `"object"` → use `Array.isArray()`
+
+- **Q**: Difference between `null` and `undefined`?  
+  **A**: `undefined` = not assigned; `null` = intentional empty
+
+- **Q**: Is `NaN === NaN`?  
+  **A**: `false` → use `Number.isNaN()`
+
+---
+
+#### 13. Summary Table
+
+| Key Point | Description |
+|---------|-----------|
+| **Definition** | Kind of data a variable holds |
+| **Categories** | 7 Primitives + Object (arrays, functions) |
+| **Dynamic Typing** | Variables can change type |
+| **Primitives** | Immutable, passed by value |
+| **Objects** | Mutable, passed by reference |
+| **Type Checking** | `typeof`, `Array.isArray()`, `=== null` |
+| **Truthy/Falsy** | `0`, `""`, `null` → `false`; `[]`, `{}` → `true` |
+| **Best Practice** | Use `===`, validate types, `??`, `Array.isArray()` |
+| **Next** | **Type Conversion** |
+
+---
 
 
 #### 11. Short Notes ⭐ 

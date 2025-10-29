@@ -1,175 +1,205 @@
 ### JavaScript Operators (Arithmetic, Comparison, Logical)
 
 #### 1. Definition
-Operators in JavaScript are symbols or keywords that perform operations on one or more values (operands), such as calculations, comparisons, or logical evaluations, to produce a result. They help manipulate data and make decisions in code.
+**Operators** are **symbols or keywords** that perform **operations** on one or more **operands** (values/variables). They are used for calculations, comparisons, and logic.
+
+---
 
 #### 2. Theory / Concept
-Operators enable data manipulation and control flow by acting on operands. They follow precedence rules (e.g., multiplication before addition) and associativity (e.g., left-to-right for most).  
-- **Arithmetic**: Perform math operations, with implicit type coercion (e.g., string to number).  
-- **Comparison**: Evaluate relationships between values, returning booleans, with strict vs. loose variants.  
-- **Logical**: Combine booleans, using short-circuit evaluation to skip unnecessary computations.  
-- **Assignment**: Update variables, often combining with other operators for shorthand.  
+Operators are classified by type and number of operands:
 
-**Step-by-Step Process**:  
-1. Identify the operator type and operands.  
-2. Apply precedence and associativity to evaluate expressions.  
-3. Handle type coercion if needed (e.g., in loose comparisons).  
-4. Execute the operation, considering short-circuiting for logical operators.  
-5. Use parentheses to override default order for clarity.
+| Type | Description | Operands |
+|------|-------------|----------|
+| **Arithmetic** | Mathematical calculations | Unary/Binary |
+| **Comparison** | Compare values → boolean | Binary |
+| **Logical** | Combine booleans | Unary/Binary |
+| **Assignment** | Assign values | Binary |
+| **Others** | `++`, `--`, `??`, etc. | Varied |
+
+**Precedence**: Order of evaluation (e.g., `*` before `+`). Use `()` to override.  
+**Associativity**: Direction (left-to-right or right-to-left).
+
+---
 
 #### 3. Syntax
-```javascript
-// Arithmetic operators
-let result = operand1 + operand2;  // Addition (or concatenation for strings)
+```js
+// Arithmetic
+5 + 3;     // 8
 
-// Comparison operators
-let isEqual = operand1 === operand2;  // Strict equality
+// Comparison
+5 > 3;     // true
 
-// Logical operators
-let condition = (value1 && value2) || value3;  // AND and OR with short-circuit
+// Logical
+true && false; // false
 
-// Assignment operators
-let variable = value;  // Basic assignment
-variable += increment;  // Compound assignment (variable = variable + increment)
+// Assignment
+let x = 5;
+x += 3;    // x = 8
 ```
+
+---
 
 #### 4. Types / Variants
-- **Arithmetic Operators**:  
-  - Basic: `+` (add/concat), `-` (subtract), `*` (multiply), `/` (divide), `%` (modulus), `**` (exponent).  
-    ```javascript
-    console.log(10 + 5);  // 15
-    console.log("Hello" + " World");  // "Hello World"
-    ```
-  - Unary: `+` (to number), `-` (negate), `++` (increment), `--` (decrement).  
-    ```javascript
-    let x = 5;
-    console.log(++x);  // 6 (pre-increment)
-    ```
-- **Comparison Operators**:  
-  - Strict: `===` (equal value/type), `!==` (not equal value/type).  
-    ```javascript
-    console.log(5 === "5");  // false
-    ```
-  - Loose: `==` (equal after coercion), `!=` (not equal after coercion).  
-    ```javascript
-    console.log(5 == "5");  // true
-    ```
-  - Relational: `>`, `>=`, `<`, `<=`.  
-    ```javascript
-    console.log(10 > 5);  // true
-    ```
-- **Logical Operators**:  
-  - Basic: `&&` (AND), `||` (OR), `!` (NOT).  
-    ```javascript
-    console.log(true && false);  // false
-    ```
-  - Modern: `??` (nullish coalescing), `&&=`, `||=`, `??=`.  
-    ```javascript
-    let val = null ?? "default";  // "default"
-    ```
-- **Assignment Operators**:  
-  - Basic: `=`.  
-  - Compound: `+=`, `-=`, `*=`, `/=`, `%=`, `**=`.  
-    ```javascript
-    let num = 10;
-    num += 5;  // 15
-    ```
+| Category | Operators | Example |
+|----------|-----------|---------|
+| **Arithmetic** | `+`, `-`, `*`, `/`, `%`, `**` | `5 + 3` |
+| **Unary Arithmetic** | `+`, `-`, `++`, `--` | `++x` |
+| **Comparison** | `==`, `===`, `!=`, `!==`, `>`, `>=`, `<`, `<=` | `5 === 5` |
+| **Logical** | `&&`, `||`, `!` | `true && false` |
+| **Assignment** | `=`, `+=`, `-=`, `*=` | `x += 5` |
+| **Modern (ES6+)** | `??`, `??=`, `&&=`, `||=` | `x ?? "default"` |
+
+---
 
 #### 5. Examples
-**Example 1: Arithmetic Operations**  
-```javascript
-// Basic arithmetic with numbers
-let a = 10;
-let b = 3;
-console.log(a + b);  // 13 (addition)
-console.log(a - b);  // 7 (subtraction)
-console.log(a * b);  // 30 (multiplication)
-console.log(a / b);  // 3.333... (division)
-console.log(a % b);  // 1 (modulus)
-console.log(a ** b); // 1000 (exponentiation)
+
+**Example 1: Arithmetic**
+```js
+let a = 10, b = 3;
+console.log(a + b);   // 13
+console.log(a - b);   // 7
+console.log(a * b);   // 30
+console.log(a / b);   // 3.333...
+console.log(a % b);   // 1
+console.log(a ** b);  // 1000
 ```
 
-**Example 2: Comparison and Logical**  
-```javascript
-// Comparing values and combining conditions
+**Example 2: Comparison**
+```js
+let x = 5, y = "5";
+console.log(x === y); // false (type)
+console.log(x == y);  // true (coercion)
+console.log(x > 3);   // true
+```
+
+**Example 3: Logical**
+```js
+let p = true, q = false;
+console.log(p && q);  // false
+console.log(p || q);  // true
+console.log(!p);      // false
+```
+
+**Example 4: Assignment**
+```js
+let n = 5;
+n += 3;               // 8
+n *= 2;               // 16
+```
+
+---
+
+#### 6. Unary Operators
+
+```js
 let x = 5;
-let y = "5";
-console.log(x === y);  // false (strict equality)
-console.log(x == y);   // true (loose equality)
-console.log(x > 0 && y > 0); // true (logical AND)
-console.log(x > 10 || y > 0); // true (logical OR)
-console.log(!(x === y)); // true (logical NOT)
+console.log(+x);      // 5
+console.log(-x);      // -5
+x++;                  // x=6 (post)
+++x;                  // x=7 (pre)
 ```
 
-**Example 3: Assignment with Defaults**  
-```javascript
-// Using logical assignment for defaults
-let user = { name: null };
-user.name ??= "Guest";  // Assign if null/undefined
-console.log(user.name); // "Guest"
+---
 
-let score = 0;
-score ||= 100;  // Assign if falsy
-console.log(score);     // 100
+#### 7. Short-Circuit & Nullish
+
+```js
+// &&
+user && user.name;    // "John" or undefined
+
+// ||
+let theme = user.theme || "light";
+
+// ??
+let retries = config.retries ?? 3; // only if null/undefined
 ```
 
-#### 6. Use Cases
-- **Arithmetic**: Calculating totals in e-commerce (e.g., subtotal = price * quantity), generating random numbers for games, or handling financial computations.  
-- **Comparison**: Validating user input (e.g., age >= 18), sorting data, or checking equality in authentication.  
-- **Logical**: Conditional rendering in UI (e.g., user && user.name), setting defaults (e.g., value ?? "default"), or combining validation rules in forms.  
-- **Assignment**: Updating counters in loops (e.g., total += item.price), shorthand for state updates in apps like shopping carts or score trackers.
+---
 
-#### 7. Common Bugs / Mistakes
-- **Loose vs. Strict Equality**: Using `==` leads to coercion surprises (e.g., `0 == false` is true). **Fix**: Always use `===` for strict checks.  
-- **Operator Precedence**: Miscalculating order (e.g., `2 + 3 * 4` is 14, not 20). **Fix**: Use parentheses for clarity, like `(2 + 3) * 4`.  
-- **Short-Circuit Misuse**: Assuming `&&` always evaluates both sides (it doesn’t if left is false). **Fix**: Rely on it for guards, like `user && user.name`.  
-- **Falsy Value Confusion**: Treating `0` or `""` as nullish. **Fix**: Use `??` instead of `||` for defaults to handle falsy non-null values.  
-- **Division by Zero**: Results in `Infinity`. **Fix**: Check divisor !== 0 before dividing.
+#### 8. Precedence & Associativity
 
-#### 8. Problem Solving / Practice Questions
-1. **Exercise 1**: Write a function that takes two numbers and an operator (`+`, `-`, `*`, `/`, `%`, `**`), performs the operation, and handles errors like division by zero.  
-2. **Exercise 2**: Create a function to check if a person is eligible to vote (age >= 18 && citizen === true), using strict comparisons.  
-3. **Exercise 3**: Implement a default value setter using `??=` for an object property (e.g., config.theme ??= "light").
+```js
+2 + 3 * 4;            // 14 (* first)
+(2 + 3) * 4;          // 20
+2 ** 3 ** 2;          // 512 (right-to-left)
+```
 
-**Sample Solution for Exercise 1**:  
-```javascript
+**Common Order** (high to low):  
+`()` → `**` → `* / %` → `+ -` → `< >` → `== ===` → `&&` → `||` → `=`
+
+---
+
+#### 9. Common Bugs / Mistakes
+
+| Bug | Cause | Fix |
+|-----|-------|-----|
+| **"5" + 3 → "53"** | `+` concatenates | `Number("5") + 3` |
+| **`==` coercion** | `0 == false` → true | Use `===` |
+| **Precedence error** | `2 + 3 * 4` → 14 | Use `()` |
+| **!x = y** | Precedence | `!(x = y)` |
+
+```js
+// Bad
+if (userInput == 0) { } // true for "0", false
+
+// Good
+if (Number(userInput) === 0) { }
+```
+
+---
+
+#### 10. Problem Solving / Practice Questions
+
+1. **Exercise 1**: Build `calc(a, b, op)` for arithmetic.
+2. **Exercise 2**: Validate form with comparisons/logicals.
+3. **Exercise 3**: Short-circuit to safe-get user.name or "Guest".
+
+**Sample Solution for Exercise 1**:
+```js
 function calc(a, b, op) {
-    if (op === "/" && b === 0) return "Error: Division by zero";
-    switch (op) {
-        case "+": return a + b;
-        case "-": return a - b;
-        case "*": return a * b;
-        case "/": return a / b;
-        case "%": return a % b;
-        case "**": return a ** b;
-        default: return "Invalid operator";
-    }
+  if (op === "+") return a + b;
+  // ... add others
 }
-console.log(calc(10, 5, "/")); // 2
 ```
 
-#### 9. Interview Tips & Questions
-**Tips**:  
-- Explain precedence with examples and how to override it.  
-- Differentiate `==` vs. `===`, and `||` vs. `??`.  
-- Demonstrate short-circuit evaluation in code snippets.  
+---
 
-**Questions**:  
-- **Q**: What is the difference between `==` and `===`?  
-  **A**: `==` allows type coercion (e.g., `5 == "5"` is true), while `===` checks both value and type (e.g., `5 === "5"` is false). Use `===` to avoid unexpected results.  
-- **Q**: How does short-circuit evaluation work in `&&` and `||`?  
-  **A**: For `&&`, if the left operand is falsy, it returns that without evaluating the right. For `||`, if the left is truthy, it returns that. Example: `user && user.name` avoids errors if user is null.  
-- **Q**: What does `a ?? b` do, and how does it differ from `a || b`?  
-  **A**: `??` returns `b` only if `a` is null or undefined, while `||` returns `b` if `a` is any falsy value (e.g., 0, ""). Use `??` for defaults ignoring other falsy values.
+#### 11. Interview Tips & Questions
 
-#### 10. Summary Table
-| Key Point            | Description |
-|----------------------|-------------|
-| Definition           | Symbols/keywords for operations on values. |
-| Core Concept         | Manipulate data via arithmetic, comparisons, logic; follow precedence. |
-| Syntax               | e.g., `+`, `===`, `&&`, `=`, `+=`. |
-| Variants             | Arithmetic (basic/unary), Comparison (strict/loose), Logical (basic/modern), Assignment (basic/compound). |
-| Common Use           | Calculations, validations, defaults, updates in apps/forms/games. |
-| Typical Errors       | Loose equality, precedence issues, falsy confusion. |
-| Practice Focus       | Build calculators, validators, default setters. |
-| Interview Prep       | Explain strict vs. loose, short-circuit, `??` vs. `||`.
+**Tips**:
+- Say: **“Use `===` over `==` for safety.”**
+- Explain **short-circuit**: `&&` for guards, `||` for defaults.
+- Show **precedence** with example + fix.
+- Know **`??` vs `||`** (`??` ignores falsy except null/undefined).
+
+**Questions**:
+
+- **Q**: `"1" + 2 + 3`?  
+  **A**: `"123"` (`+` left-to-right, concat)
+
+- **Q**: `false == 0`?  
+  **A**: `true` → use `=== false`
+
+- **Q**: Precedence of `&&` vs `||`?  
+  **A**: `&&` higher → `a && b || c` = `(a && b) || c`
+
+- **Q**: What is short-circuit?  
+  **A**: `&&` skips right if left false; `||` skips if left true.
+
+---
+
+#### 12. Summary Table
+
+| Key Point | Description |
+|---------|-----------|
+| **Definition** | Symbols for operations |
+| **Arithmetic** | `+ - * / % **` (math) |
+| **Comparison** | `== === > < >= <=` (boolean) |
+| **Logical** | `&& || ! ??` (combine booleans) |
+| **Assignment** | `= += -=` (update variables) |
+| **Precedence** | `* /` > `+ -` > comparisons > logicals |
+| **Best Practice** | `===`, `()`, short-circuit |
+| **Common Bugs** | Coercion, precedence, `+` concat |
+| **Next** | **Conditionals (if, switch)** |
+
+---
